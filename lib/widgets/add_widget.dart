@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:remainder_main/database/repo.dart';
 import 'package:remainder_main/models/task_model.dart';
+import '../notification_Services/notification_service.dart';
 
 class AddItem extends StatefulWidget {
   Function getlist;
@@ -32,7 +33,7 @@ class _AddItemState extends State<AddItem> {
         context: context,
         builder: (BuildContext builder) {
           return Container(
-            height: MediaQuery.of(context).copyWith().size.height / 2,
+            height: MediaQuery.of(context).copyWith().size.height / 3,
             child: CupertinoDatePicker(
                 minimumDate: DateTime.now(),
                 minimumYear: DateTime.now().year,
@@ -54,6 +55,7 @@ class _AddItemState extends State<AddItem> {
     return Container(
       color: Color(0xFF737373),
       child: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -62,47 +64,45 @@ class _AddItemState extends State<AddItem> {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              TextField(
+                controller: titlecontroller,
+                decoration: InputDecoration(hintText: 'enter the task'),
+                onChanged: (value) {
+                  titlecontroller.text = value;
+                  titlecontroller.selection = TextSelection.fromPosition(
+                      TextPosition(offset: titlecontroller.text.length));
+                },
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              duedate == null
+                  ? Text('Select the due date')
+                  : Text("Selected date is ${duedate}"),
+              selectduedate(context),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextField(
-                    controller: titlecontroller,
-                    decoration: InputDecoration(hintText: 'enter the task'),
-                    onChanged: (value) {
-                      titlecontroller.text = value;
-                      titlecontroller.selection = TextSelection.fromPosition(
-                          TextPosition(offset: titlecontroller.text.length));
-                    },
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  duedate == null
-                      ? selectduedate(context)
-                      : Text("Picked date is ${duedate}"),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                            child: Text('submit'),
-                            onPressed: () {
-                              var taskobj = Task(
-                                  id: DateTime.now().toString(),
-                                  duedate: duedate,
-                                  title: titlecontroller.text);
-                              Repository().insertitem(taskobj);
-                              Navigator.pop(context);
-                              widget.getlist();
-                            }),
-                      )
-                    ],
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                        child: Text('submit'),
+                        onPressed: () {
+                          var taskobj = Task(
+                              duedate: duedate!,
+                              title: titlecontroller.text,
+                              isScheduled: false);
+                          Repository().insertitem(taskobj);
+                          Navigator.pop(context);
+                          widget.getlist();
+                          //CANNOT DO SCHEDULE HERE
+                        }),
                   )
                 ],
-              ),
+              )
             ],
           ),
         ),
