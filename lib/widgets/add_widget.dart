@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:remainder_main/database/repo.dart';
-import 'package:remainder_main/models/task_model.dart';
+import '../database/repo.dart';
+import '../models/task_model.dart';
 
 class AddItem extends StatefulWidget {
   Function getlist;
@@ -32,7 +32,7 @@ class _AddItemState extends State<AddItem> {
         context: context,
         builder: (BuildContext builder) {
           return Container(
-            height: MediaQuery.of(context).copyWith().size.height / 2,
+            height: MediaQuery.of(context).copyWith().size.height / 3,
             child: CupertinoDatePicker(
                 minimumDate: DateTime.now(),
                 minimumYear: DateTime.now().year,
@@ -54,6 +54,7 @@ class _AddItemState extends State<AddItem> {
     return Container(
       color: Color(0xFF737373),
       child: Container(
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.only(
@@ -79,8 +80,9 @@ class _AddItemState extends State<AddItem> {
                     height: 20,
                   ),
                   duedate == null
-                      ? selectduedate(context)
-                      : Text("Picked date is ${duedate}"),
+                      ? Text('Select the due date')
+                      : Text("Selected date is ${duedate}"),
+                  selectduedate(context),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -91,8 +93,7 @@ class _AddItemState extends State<AddItem> {
                             child: Text('submit'),
                             onPressed: () {
                               var taskobj = Task(
-                                  id: DateTime.now().toString(),
-                                  duedate: duedate,
+                                  duedate: duedate!,
                                   title: titlecontroller.text);
                               Repository().insertitem(taskobj);
                               Navigator.pop(context);

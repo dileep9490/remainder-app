@@ -1,4 +1,4 @@
-# remainder_main
+# remainder_App
 
 A new Flutter project.
 
