@@ -1,8 +1,8 @@
 # TODO-list App
 
 
-Created the app using flutter and sqlite as backend to store the user data using [sqflite plugin](https://pub.dev/packages/sqflite)
-when turned on the user gets notification which was made possible by [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
+Created the app using flutter and sqlite as backend to store the user data using [sqflite plugin](https://pub.dev/packages/sqflite).
+when turned on the switch user gets notification which was made possible by [flutter_local_notifications](https://pub.dev/packages/flutter_local_notifications)
 
 ## Getting Started
 
