@@ -1,26 +1,15 @@
 class Task {
-  int? id;
-  String title;
-  DateTime duedate;
-  bool isScheduled;
+  String? id;
+  String? title;
+  DateTime? duedate;
 
-  Task({required this.title, required this.duedate, required this.isScheduled});
-  Task.withid(
-      {required this.id,
-      required this.title,
-      required this.duedate,
-      required this.isScheduled});
+  Task({required this.id, required this.title, required this.duedate});
 
-  Map<String, dynamic> toMap() => {
-        'id': id,
-        'title': title,
-        'duedate': duedate.toIso8601String(),
-        'isScheduled': isScheduled ? 1 : 0,
-      };
+  Map<String, dynamic> toMap() =>
+      {'id': id, 'title': title, 'duedate': duedate!.toIso8601String()};
 
-  factory Task.fromMap(Map<String, dynamic> taskdata) => Task.withid(
+  factory Task.fromMap(Map<String, dynamic> taskdata) => Task(
       id: taskdata['id'],
       duedate: DateTime.parse(taskdata['duedate']),
-      title: taskdata['title'],
-      isScheduled: taskdata['isScheduled'] ? true : false);
+      title: taskdata['title']);
 }
