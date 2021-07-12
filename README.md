@@ -1,4 +1,4 @@
-# TODO-list App
+# Remainder App
 
 
 Created the app using flutter and sqlite as backend to store the user data using [sqflite plugin](https://pub.dev/packages/sqflite).
