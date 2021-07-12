@@ -1,6 +1,7 @@
-# remainder_App
+# TODO-list App
+>>>>>>> ceb519f1130d2392561c3d095260adff8abb3eb8
 
-A new Flutter project.
+Created the app using flutter and sqlite as backend to store the user data using [sqflite plugin](https://pub.dev/packages/sqflite)
 
 ## Getting Started
 
