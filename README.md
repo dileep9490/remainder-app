@@ -1,6 +1,6 @@
 # TODO-list App
 
-Created the app using flutter and sqlite as backend to store the user data using -[sqflite plugin](https://pub.dev/packages/sqflite)
+Created the app using flutter and sqlite as backend to store the user data using [sqflite plugin](https://pub.dev/packages/sqflite)
 
 ## Getting Started
 
