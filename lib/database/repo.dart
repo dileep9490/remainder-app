@@ -48,7 +48,7 @@ class Repository {
 
   Future<List<Task>> getTaskList() async {
     List<Map<String, dynamic>> taskmaplist = await readalldata();
-    print('getting list $taskmaplist');
+    print('getting list ${taskmaplist}');
     List<Task> tasklist = [];
     taskmaplist.forEach((element) {
       tasklist.add(Task.fromMap(element));
