@@ -55,7 +55,7 @@ class Notification_service {
 // void Repeat(int id,
 //     String title,
 //     String body,
-//     //TODO:and new property if we require to repeat daily
+//     //TODO: new property if we require to repeat daily
 //     ) async {
 //   await FlutterLocalNotificationsPlugin().showDailyAtTime(
 //       id, title, body, Time(), platformSpecifis)

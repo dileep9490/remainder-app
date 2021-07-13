@@ -27,7 +27,7 @@ class _ItemTileState extends State<ItemTile> {
         content: Text('$value ${taskobjref.title}'),
         duration: Duration(seconds: 1),
       );
-
+      ScaffoldMessenger.of(context)..removeCurrentSnackBar();
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
     }
 
@@ -38,6 +38,7 @@ class _ItemTileState extends State<ItemTile> {
       child: ListTile(
         onLongPress: () {
           Repository().deleteitme(taskobjref.id!);
+          Notification_service().cancelnotification(taskobjref.id!);
           widget.updatescreen();
         },
         leading: CircleAvatar(
