@@ -46,7 +46,7 @@ class _ItemTileState extends State<ItemTile> {
           child: Text((widget.index + 1).toString()),
         ),
         title: Text(taskobjref.title),
-        subtitle: Text("DueDate:${DateFormat("dd-MM-yy").format(taskobjref.duedate)} ${DateFormat.jm().format(taskobjref.duedate)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12),),
+        subtitle: Text("DueDate:${DateFormat("dd-MMMM-yy").format(taskobjref.duedate)} ${DateFormat.jm().format(taskobjref.duedate)}",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 12),),
         trailing: Switch(
           value: taskobjref.isScheduled,
           onChanged: (value) {
@@ -77,5 +77,6 @@ class _ItemTileState extends State<ItemTile> {
         ),
       ),
     );
+
   }
 }

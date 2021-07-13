@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import '../database/repo.dart';
 import '../models/task_model.dart';
 
@@ -81,7 +82,10 @@ class _AddItemState extends State<AddItem> {
                   ),
                   duedate == null
                       ? Text('Select the due date')
-                      : Text("Selected date is ${duedate}"),
+
+                      : Text("Selected date is ${DateFormat("dd-MMMM-yy").format(duedate!)} ${DateFormat.jm().format(duedate!)}"),
+
+
                   selectduedate(context),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
