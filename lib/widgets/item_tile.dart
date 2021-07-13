@@ -54,7 +54,7 @@ class _ItemTileState extends State<ItemTile> {
               taskobjref.isScheduled = value;
             });
             if (taskobjref.isScheduled) {
-              if (taskobjref.duedate.hour >= DateTime.now().hour &&
+              if ( taskobjref.duedate.year >= DateTime.now().year &&  taskobjref.duedate.day >= DateTime.now().day && taskobjref.duedate.hour >= DateTime.now().hour &&
                   (taskobjref.duedate.hour == DateTime.now().hour &&
                       taskobjref.duedate.minute > DateTime.now().minute)) {
                 Notification_service().schedulenotification(taskobjref);
