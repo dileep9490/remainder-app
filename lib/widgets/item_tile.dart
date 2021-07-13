@@ -4,9 +4,9 @@ import '../database/repo.dart';
 import '../models/task_model.dart';
 
 class ItemTile extends StatefulWidget {
-  Task taskitem;
-  int index;
-  Function updatescreen;
+ final Task taskitem;
+ final int index;
+ final Function updatescreen;
 
   ItemTile(
       {required this.taskitem,
@@ -21,6 +21,12 @@ class _ItemTileState extends State<ItemTile> {
   @override
   Widget build(BuildContext context) {
     Task taskobjref = widget.taskitem;
+
+  if(taskobjref.isScheduled){
+    if(DateTime.now().hour > taskobjref.duedate.hour && (DateTime.now().hour == taskobjref.duedate.hour && DateTime.now().minute > taskobjref.duedate.minute)){
+      taskobjref.isScheduled =  !taskobjref.isScheduled;
+    }
+  }
 
     void showSnackbar(String value) {
       final snackbar = SnackBar(
@@ -53,23 +59,28 @@ class _ItemTileState extends State<ItemTile> {
               taskobjref.isScheduled = value;
             });
             if (taskobjref.isScheduled) {
-              if (taskobjref.duedate.hour >= DateTime.now().hour &&
+              if (taskobjref.duedate.day >= DateTime.now().day && taskobjref.duedate.hour >= DateTime.now().hour &&
                   (taskobjref.duedate.hour == DateTime.now().hour &&
                       taskobjref.duedate.minute > DateTime.now().minute)) {
                 Notification_service().schedulenotification(taskobjref);
                 showSnackbar('scheduled');
                 print('scheduled');
-              } else {
+              } else{
                 setState(() {
                   taskobjref.isScheduled = !value;
                 });
+                Repository().updatetask(taskobjref);
                 showSnackbar('can\'t scheduled');
                 print('not scheduled');
               }
             } else if (!taskobjref.isScheduled) {
               Notification_service().cancelnotification(taskobjref.id!);
+                if (taskobjref.duedate.day >= DateTime.now().day && taskobjref.duedate.hour >= DateTime.now().hour &&
+                  (taskobjref.duedate.hour == DateTime.now().hour &&
+                      taskobjref.duedate.minute > DateTime.now().minute)) {
               showSnackbar('cancelled');
-              print('cancelled');
+              }
+             
             }
             Repository().updatetask(taskobjref);
           },
