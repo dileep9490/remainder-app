@@ -82,7 +82,10 @@ class _AddItemState extends State<AddItem> {
                   ),
                   duedate == null
                       ? Text('Select the due date')
+
                       : Text("Selected date is ${DateFormat("dd-MMMM-yy").format(duedate!)} ${DateFormat.jm().format(duedate!)}"),
+
+
                   selectduedate(context),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
