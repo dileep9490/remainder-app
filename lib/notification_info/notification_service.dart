@@ -32,7 +32,7 @@ class Notification_service {
     final scheduledate = tz.TZDateTime.from(task.duedate, location);
 
     FlutterLocalNotificationsPlugin().zonedSchedule(
-        task.id!, task.title, 'body', scheduledate, platformSpecifis,
+        task.id!, task.title, 'start  the task', scheduledate, platformSpecifis,
         uiLocalNotificationDateInterpretation:
             UILocalNotificationDateInterpretation.absoluteTime,
         androidAllowWhileIdle: true);
