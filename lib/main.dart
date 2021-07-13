@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'notification_info/notification_service.dart';
 import 'screens/home_screen.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Notification_service().init();

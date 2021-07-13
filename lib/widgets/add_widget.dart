@@ -4,14 +4,14 @@ import '../database/repo.dart';
 import '../models/task_model.dart';
 
 class AddItem extends StatefulWidget {
-  final Function getlist;
+  Function getlist;
   @override
   _AddItemState createState() => _AddItemState();
   AddItem({required this.getlist});
 }
 
 class _AddItemState extends State<AddItem> {
-  //TODO: get this function
+  //TODO:get this function
   TextEditingController titlecontroller = TextEditingController();
   DateTime? duedate;
   MaterialButton selectduedate(BuildContext context) {
@@ -81,7 +81,7 @@ class _AddItemState extends State<AddItem> {
                   ),
                   duedate == null
                       ? Text('Select the due date')
-                      : Text("Selected date is $duedate"),
+                      : Text("Selected date is ${duedate}"),
                   selectduedate(context),
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
